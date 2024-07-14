@@ -1,0 +1,150 @@
+<html>
+    <style>
+        .imagesContainer {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 1080px;
+            height: 800px;       
+        }
+        .imageBase{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .image1 {
+            
+            border: 1px red solid;
+        }
+        .image2 {
+            /*position: absolute;*/
+            border: 1px green solid;
+        }
+        .image3{
+            border: 1px blue solid;
+        }
+        .disclaimerContainer{
+            position: relative;
+            display: block;
+            font-size: smaller;
+        }
+        
+    </style>
+    <script>
+        window.onload = function () {
+            var rangeImg1 = document.getElementById("rangeImage1");
+            rangeImg1.oninput = function() {
+                var val = this.value / 100;
+                adjustOpacity("1",val);
+            }
+
+            var rangeImg2 = document.getElementById("rangeImage2");
+            rangeImg2.oninput = function() {
+                var val = this.value / 100;
+                adjustOpacity("2",val);
+            }
+
+            var rangeImg3 = document.getElementById("rangeImage3");
+            rangeImg3.oninput = function() {
+                var val = this.value / 100;
+                adjustOpacity("3",val);
+            }
+
+            var txtImage1 = document.getElementById("txtImage1");
+            txtImage1.addEventListener("focusout", loadImage1);
+
+            var txtImage2 = document.getElementById("txtImage2");
+            txtImage2.addEventListener("focusout", loadImage2);
+
+            var txtImage3 = document.getElementById("txtImage3");
+            txtImage3.addEventListener("focusout", loadImage3);
+
+        }
+        function loadImage1()
+        {
+            var txt = document.getElementById("txtImage1");
+            if(txt)
+            {
+                var img = document.getElementById("image1");
+                img.src = txt.value;
+            }
+        }
+        function loadImage2()
+        {
+            var txt = document.getElementById("txtImage2");
+            if(txt)
+            {
+                var img = document.getElementById("image2");
+                img.src = txt.value;
+            }
+        }
+        function loadImage3()
+        {
+            var txt = document.getElementById("txtImage3");
+            if(txt)
+            {
+                var img = document.getElementById("image3");
+                img.src = txt.value;
+            }
+        }
+
+        function adjustOpacity(name,op)
+        {
+            var objName = "image" + name;
+
+            var obj = document.getElementById(objName);
+            if(obj) {
+                obj.style.opacity = op; 
+            }
+        }
+
+
+
+    </script>
+    <body>
+        <h1>MN Chaser's Image Blender</h1>
+        <table>
+            <tr>
+                <td>Image 1 URL</td>
+                <td>Image 2 URL</td>
+                <td>Image 3 URL</td>
+            </tr>
+            <tr>
+                <td><input id="txtImage1"/></td>
+                <td><input id="txtImage2"/></td>
+                <td><input id="txtImage3"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="rangeImage1"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="rangeImage2"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="rangeImage3"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <div class="imagesContainer">
+            <img id="image1" class="imageBase image1" style="display:block;" src="" />
+            <img id="image2" class="imageBase image2" style="display:block;" src="" />
+            <img id="image3" class="imageBase image3" style="display:block;" src="" />
+        </div>
+        <br/><br/>
+        <div class="disclaimerContainer">
+                This tool is provided for free and comes with no warranties, support, or restrictions.  
+                <br/>Usage of images and results created from this tool are subject to the terms of the original images.  
+                <br/>The creator of this page assumes no responsibility. User must know and follow the terms of use for source images.
+                <br/>Have fun!
+        </div>
+    </body>
+</html>
